@@ -19,6 +19,7 @@ function App() {
         <Routes>
           <Route path='/login' element={<LoginPage />} />
           <Route path='/' element={<Navigate to='/app/projects' replace />} />
+          <Route path='/app' element={<Navigate to='/app/projects' replace />} />
           {!isAuthorized ? (
             <Route path='/app/*' element={<Navigate to='/login' replace />} />
           ) : (

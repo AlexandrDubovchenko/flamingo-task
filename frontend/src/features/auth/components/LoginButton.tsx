@@ -1,10 +1,8 @@
 import { Button } from '@/shared/ui';
 import { useSignInWithGithub } from '../hooks/useSignInWithGithub';
-import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/auth';
 
 export function LoginButton() {
-  const navigate = useNavigate();
   const { signInWithGithub } = useSignInWithGithub();
   const { setIsAuthorized } = useAuthContext();
 
@@ -13,7 +11,6 @@ export function LoginButton() {
       const token = await signInWithGithub();
       localStorage.setItem('authToken', token);
       setIsAuthorized(true);
-      navigate('/app/projects', { replace: true });
     } catch (error) {
       console.error('GitHub login failed:', error);
     }
