@@ -120,7 +120,7 @@ export function ProjectDetailsPage() {
           <p className='text-muted-foreground mb-6'>
             The project you're looking for doesn't exist.
           </p>
-          <Button onClick={() => navigate('/projects')}>
+          <Button onClick={() => navigate('/app/projects')}>
             <ArrowLeft className='mr-2 h-4 w-4' />
             Back to Projects
           </Button>
@@ -136,7 +136,7 @@ export function ProjectDetailsPage() {
           <Button
             variant='outline'
             size='sm'
-            onClick={() => navigate('/projects')}
+            onClick={() => navigate('/app/projects')}
           >
             <ArrowLeft className='mr-2 h-4 w-4' />
             Back
