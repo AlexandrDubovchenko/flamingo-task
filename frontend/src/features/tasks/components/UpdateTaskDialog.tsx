@@ -120,11 +120,10 @@ export function UpdateTaskDialog({
         dueDate: data.dueDate ? `${data.dueDate}T00:00:00Z` : undefined,
       };
 
-      const newTask = await mutation.mutateAsync({
+      await mutation.mutateAsync({
         data: updateData,
         id: task.id,
       });
-      console.log('Updated task:', newTask);
       onOpenChange(false);
       reset();
     } catch (error) {

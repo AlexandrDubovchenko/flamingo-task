@@ -12,6 +12,7 @@ import { useAuthContext } from './features/auth/context/auth';
 
 function App() {
   const { isAuthorized } = useAuthContext();
+  console.log('isAuthorized', isAuthorized)
   return (
     <div className='min-h-screen bg-background'>
       <Router>

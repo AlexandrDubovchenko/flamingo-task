@@ -14,7 +14,6 @@ export function useAllTasks() {
         (acc[key] ||= []).push(item);
         return acc;
       }, {} as Record<string, typeof tasks>);
-      console.log('Tasks grouped by project:', byProject);
       for (const [projectId, tasksForProject] of Object.entries(byProject)) {
         queryClient.setQueryData(
           ['tasks', { projectId: Number(projectId) }],

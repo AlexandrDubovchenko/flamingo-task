@@ -114,7 +114,6 @@ export function CreateTaskDialog({
       // Mock API call - replace with actual service call
       const task = await mutation.mutateAsync(taskData);
 
-      console.log('Creating task:', task);
       onTaskCreated?.(task);
 
       // Reset form and close dialog

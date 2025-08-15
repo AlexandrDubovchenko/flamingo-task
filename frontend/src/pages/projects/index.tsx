@@ -43,7 +43,6 @@ export function ProjectsPage() {
       day: 'numeric',
     });
   };
-  console.log(projects)
   if (isLoading || !projects) {
     return <div>Loading...</div>;
   }
