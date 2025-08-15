@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/shared/ui/select';
-import { Calendar, Clock, Flag, User, Loader2 } from 'lucide-react';
+import { Calendar, Clock, Flag, Loader2 } from 'lucide-react';
 import {
   TaskStatus,
   TaskPriority,
@@ -38,7 +38,6 @@ const updateTaskSchema = z.object({
   description: z.string().optional(),
   status: z.enum(['todo', 'in_progress', 'completed']),
   priority: z.enum(['low', 'medium', 'high']),
-  assigneeId: z.number().optional(),
   dueDate: z.string().optional(),
 });
 
@@ -62,14 +61,6 @@ const priorityOptions = [
   { value: TaskPriority.HIGH, label: 'High', color: 'bg-red-500' },
 ];
 
-// Mock users - in a real app, this would come from an API
-const mockUsers = [
-  { id: 1, name: 'John Doe' },
-  { id: 2, name: 'Jane Smith' },
-  { id: 3, name: 'Mike Johnson' },
-  { id: 4, name: 'Sarah Wilson' },
-];
-
 export function UpdateTaskDialog({
   open,
   onOpenChange,
@@ -88,7 +79,6 @@ export function UpdateTaskDialog({
     mode: 'onChange',
   });
 
-  // Reset form when task changes or dialog opens
   useEffect(() => {
     if (task && open) {
       reset({
@@ -96,27 +86,22 @@ export function UpdateTaskDialog({
         description: task.description || '',
         status: task.status,
         priority: task.priority,
-        dueDate: task.dueDate ? task.dueDate.split('T')[0] : '', // Convert to date format
+        dueDate: task.dueDate ? task.dueDate.split('T')[0] : '',
       });
     }
   }, [task, open, reset]);
 
   const selectedStatus = watch('status');
   const selectedPriority = watch('priority');
-  const selectedAssigneeId = watch('assigneeId');
 
   const onSubmit = async (data: UpdateTaskFormData) => {
     if (!task) return;
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
       const updateData: UpdateTaskDto = {
         title: data.title,
         description: data.description,
         status: data.status,
         priority: data.priority,
-        assigneeId: data.assigneeId,
         dueDate: data.dueDate ? `${data.dueDate}T00:00:00Z` : undefined,
       };
 
@@ -155,7 +140,6 @@ export function UpdateTaskDialog({
 
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
           <div className='grid gap-4'>
-            {/* Title */}
             <div className='space-y-2'>
               <Label htmlFor='title' className='text-sm font-medium'>
                 Title *
@@ -171,7 +155,6 @@ export function UpdateTaskDialog({
               )}
             </div>
 
-            {/* Description */}
             <div className='space-y-2'>
               <Label htmlFor='description' className='text-sm font-medium'>
                 Description
@@ -185,9 +168,7 @@ export function UpdateTaskDialog({
               />
             </div>
 
-            {/* Status and Priority Row */}
             <div className='grid gap-4 sm:grid-cols-2'>
-              {/* Status */}
               <div className='space-y-2'>
                 <Label className='text-sm font-medium flex items-center space-x-1'>
                   <Clock className='h-4 w-4' />
@@ -217,7 +198,6 @@ export function UpdateTaskDialog({
                 </Select>
               </div>
 
-              {/* Priority */}
               <div className='space-y-2'>
                 <Label className='text-sm font-medium flex items-center space-x-1'>
                   <Flag className='h-4 w-4' />
@@ -248,38 +228,7 @@ export function UpdateTaskDialog({
               </div>
             </div>
 
-            {/* Assignee and Due Date Row */}
             <div className='grid gap-4 sm:grid-cols-2'>
-              {/* Assignee */}
-              <div className='space-y-2'>
-                <Label className='text-sm font-medium flex items-center space-x-1'>
-                  <User className='h-4 w-4' />
-                  <span>Assignee</span>
-                </Label>
-                <Select
-                  value={selectedAssigneeId?.toString() || 'unassigned'}
-                  onValueChange={(value) =>
-                    setValue(
-                      'assigneeId',
-                      value === 'unassigned' ? undefined : parseInt(value)
-                    )
-                  }
-                >
-                  <SelectTrigger>
-                    <SelectValue placeholder='Select assignee' />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value='unassigned'>Unassigned</SelectItem>
-                    {mockUsers.map((user) => (
-                      <SelectItem key={user.id} value={user.id.toString()}>
-                        {user.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              {/* Due Date */}
               <div className='space-y-2'>
                 <Label
                   htmlFor='dueDate'

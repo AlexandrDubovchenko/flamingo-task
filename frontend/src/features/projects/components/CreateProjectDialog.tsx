@@ -69,25 +69,21 @@ export function CreateProjectDialog({
   const selectedColor = watch('color');
   const onSubmit = async (data: CreateProjectFormData) => {
     try {
-      // Here you would call your API service
       const projectData: CreateProjectDto = {
         name: data.name,
         description: data.description,
         color: data.color,
       };
 
-      // Mock API call - replace with actual service call
       const result = await mutation.mutateAsync(projectData);
 
       console.log('Creating project:', result);
       onProjectCreated?.(result);
 
-      // Reset form and close dialog
       reset();
       onOpenChange(false);
     } catch (error) {
       console.error('Failed to create project:', error);
-      // Handle error (show toast, etc.)
     }
   };
 
@@ -109,7 +105,6 @@ export function CreateProjectDialog({
 
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
           <div className='space-y-4'>
-            {/* Project Name */}
             <div className='space-y-2'>
               <Label htmlFor='name'>Project Name *</Label>
               <Input
@@ -123,7 +118,6 @@ export function CreateProjectDialog({
               )}
             </div>
 
-            {/* Project Description */}
             <div className='space-y-2'>
               <Label htmlFor='description'>Description</Label>
               <Textarea
@@ -139,7 +133,6 @@ export function CreateProjectDialog({
               )}
             </div>
 
-            {/* Color Selection */}
             <div className='space-y-2'>
               <Label>Project Color</Label>
               <div className='flex gap-2 flex-wrap'>

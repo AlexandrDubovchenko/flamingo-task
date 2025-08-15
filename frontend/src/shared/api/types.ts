@@ -1,4 +1,3 @@
-// API Response DTOs - these match exactly what the backend returns
 export interface UserApiResponse {
   id: number
   auth0Id: string

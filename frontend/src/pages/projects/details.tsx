@@ -131,7 +131,6 @@ export function ProjectDetailsPage() {
 
   return (
     <div className='container mx-auto px-4 py-8 space-y-8'>
-      {/* Header */}
       <div className='flex items-center justify-between'>
         <div className='flex items-center space-x-4'>
           <Button
@@ -154,7 +153,6 @@ export function ProjectDetailsPage() {
         </div>
       </div>
 
-      {/* Project Description */}
       {project.description && (
         <Card>
           <CardHeader>
@@ -166,7 +164,6 @@ export function ProjectDetailsPage() {
         </Card>
       )}
 
-      {/* Stats Cards */}
       <div className='grid gap-4 md:grid-cols-4'>
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
@@ -228,7 +225,6 @@ export function ProjectDetailsPage() {
         </Card>
       </div>
 
-      {/* Tasks Section */}
       <div className='space-y-6'>
         <div className='flex items-center justify-between'>
           <h2 className='text-xl font-semibold'>Tasks</h2>
@@ -321,19 +317,16 @@ export function ProjectDetailsPage() {
         )}
       </div>
 
-      {/* Create Task Dialog */}
       <CreateTaskDialog
         open={isCreateTaskOpen}
         onOpenChange={setIsCreateTaskOpen}
         projectId={project.id}
       />
 
-      {/* Update Task Dialog */}
       <UpdateTaskDialog
         open={isUpdateTaskOpen}
         onOpenChange={setIsUpdateTaskOpen}
         task={selectedTask}
-        // onTaskUpdated={handleTaskUpdated}
       />
     </div>
   );

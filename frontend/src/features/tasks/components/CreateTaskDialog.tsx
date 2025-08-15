@@ -80,7 +80,6 @@ export function CreateTaskDialog({
     },
   });
 
-  // Update projectId when it changes
   useEffect(() => {
     if (projectId) {
       setValue('projectId', projectId);
@@ -111,17 +110,14 @@ export function CreateTaskDialog({
         dueDate: data.dueDate,
       };
 
-      // Mock API call - replace with actual service call
       const task = await mutation.mutateAsync(taskData);
 
       onTaskCreated?.(task);
 
-      // Reset form and close dialog
       reset();
       onOpenChange(false);
     } catch (error) {
       console.error('Failed to create task:', error);
-      // Handle error (show toast, etc.)
     }
   };
 
@@ -146,7 +142,6 @@ export function CreateTaskDialog({
 
         <form onSubmit={handleSubmit(onSubmit)} className='space-y-6'>
           <div className='space-y-4'>
-            {/* Task Title */}
             <div className='space-y-2'>
               <Label htmlFor='title'>Task Title *</Label>
               <Input
@@ -160,7 +155,6 @@ export function CreateTaskDialog({
               )}
             </div>
 
-            {/* Task Description */}
             <div className='space-y-2'>
               <Label htmlFor='description'>Description</Label>
               <Textarea
@@ -171,9 +165,7 @@ export function CreateTaskDialog({
               />
             </div>
 
-            {/* Status and Priority Row */}
             <div className='grid grid-cols-2 gap-4'>
-              {/* Status Selection */}
               <div className='space-y-2'>
                 <Label className='flex items-center gap-2'>
                   <Flag className='h-4 w-4' />
@@ -201,7 +193,6 @@ export function CreateTaskDialog({
                 </Select>
               </div>
 
-              {/* Priority Selection */}
               <div className='space-y-2'>
                 <Label className='flex items-center gap-2'>
                   <Clock className='h-4 w-4' />
@@ -230,9 +221,7 @@ export function CreateTaskDialog({
               </div>
             </div>
 
-            {/* Due Date and Assignee Row */}
             <div className='grid grid-cols-2 gap-4'>
-              {/* Due Date */}
               <div className='space-y-2'>
                 <Label htmlFor='dueDate' className='flex items-center gap-2'>
                   <Calendar className='h-4 w-4' />

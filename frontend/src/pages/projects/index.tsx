@@ -49,7 +49,6 @@ export function ProjectsPage() {
 
   return (
     <div className='container mx-auto px-4 py-8 space-y-8'>
-      {/* Header */}
       <div className='flex items-center justify-between'>
         <div>
           <h1 className='text-3xl font-bold tracking-tight'>Projects</h1>
@@ -63,7 +62,6 @@ export function ProjectsPage() {
         </Button>
       </div>
 
-      {/* Stats Cards */}
       <div className='grid gap-4 md:grid-cols-3'>
         <Card>
           <CardHeader className='flex flex-row items-center justify-between space-y-0 pb-2'>
@@ -94,7 +92,6 @@ export function ProjectsPage() {
         </Card>
       </div>
 
-      {/* Projects Grid */}
       <div className='space-y-6'>
         <h2 className='text-xl font-semibold'>Your Projects</h2>
 
@@ -167,7 +164,6 @@ export function ProjectsPage() {
         )}
       </div>
 
-      {/* Dialogs */}
       <CreateProjectDialog
         open={isCreateProjectOpen}
         onOpenChange={setIsCreateProjectOpen}
