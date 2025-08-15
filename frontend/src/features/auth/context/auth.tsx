@@ -10,12 +10,14 @@ const AuthContext = createContext<{
   isAuthorized: boolean;
   setIsAuthorized: (isAuthorized: boolean) => void;
 }>({
-  isAuthorized: Boolean(localStorage.getItem('authToken')),
+  isAuthorized: false,
   setIsAuthorized: () => {},
 });
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState(
+    Boolean(localStorage.getItem('authToken'))
+  );
   return (
     <AuthContext.Provider value={{ isAuthorized, setIsAuthorized }}>
       {children}
