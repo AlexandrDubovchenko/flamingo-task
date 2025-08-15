@@ -94,18 +94,40 @@ The frontend will start on `http://localhost:5173` by default.
 
 ## Architecture Notes
 
-### Backend
-- **NestJS**: Modular structure (`auth`, `users`, `projects`, `tasks`, etc.)
-- **Drizzle ORM**: Type-safe database access
-- **Authentication**: JWT and GitHub OAuth strategies
-- **Guards & Interceptors**: For request validation and response formatting
-- **Repository Pattern**: Domain and infrastructure separation for models and data access
+### Backend Architecture
+```
+src/
+├── common/          # Shared utilities, types, interceptors, guards
+├── database/        # Database configuration, migrations, schema
+├── domain/          # Core business models and repository interfaces
+├── infrastructure/  # External service implementations (repositories, auth)
+├── auth/            # Authentication module (strategies, guards, services)
+├── users/           # User management module
+├── projects/        # Project management module
+├── tasks/           # Task management module
+└── main.ts          # Application entry point
+```
+- **NestJS**: Modular structure with dependency injection
+- **Domain-Driven Design**: Clean separation between domain and infrastructure
+- **Repository Pattern**: Abstract data access with interface-based design
+- **Authentication**: JWT and GitHub OAuth strategies with guards
+- **Drizzle ORM**: Type-safe database access and migrations
 
-### Frontend
+### Frontend Architecture
+```
+src/
+├── shared/          # UI components, utils, configs, API calls
+├── models/          # Domain interfaces and types
+├── services/        # Data mapping and business logic  
+├── features/        # Reusable components with logic
+├── pages/           # Route-level pages
+├── assets/          # Static assets
+└── App.tsx          # Main app component
+```
 - **React + Vite**: Fast development and build
-- **Feature-based folders**: `features/`, `models/`, `services/`, `shared/`
-- **Service Layer**: API communication
-- **UI Components**: Reusable and modular
+- **Feature-based folders**: Clean separation of concerns
+- **Service Layer**: API communication and data transformation
+- **Shared Components**: Reusable UI components and utilities
 
 ---
 
