@@ -79,7 +79,6 @@ export class TaskService {
       status: rawTask.status,
       priority: rawTask.priority,
       projectId: rawTask.projectId,
-      assigneeId: rawTask.assigneeId || undefined,
       dueDate: rawTask.dueDate || undefined,
       createdAt: rawTask.createdAt,
       updatedAt: rawTask.updatedAt,

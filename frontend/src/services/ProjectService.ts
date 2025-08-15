@@ -56,7 +56,7 @@ export class ProjectService {
       id: rawProject.id,
       name: rawProject.name,
       description: rawProject.description || undefined,
-      ownerId: rawProject.ownerId,
+      userId: rawProject.userId,
       createdAt: rawProject.createdAt,
       updatedAt: rawProject.updatedAt,
     }
