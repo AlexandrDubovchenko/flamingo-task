@@ -45,6 +45,8 @@ async function bootstrap() {
 
   const port = process.env.PORT || 3001;
   await app.listen(port);
-  console.log(`Application is running on: ${await app.getUrl()}`);
+  console.log(
+    `Application is running on: ${await app.getUrl()}, CORS enabled for ${process.env.FRONTEND_URL || 'localhost'}`,
+  );
 }
 void bootstrap();
