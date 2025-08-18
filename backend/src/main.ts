@@ -12,12 +12,9 @@ async function bootstrap() {
         : ['log', 'debug', 'error', 'verbose', 'warn'],
   });
 
-  // Enable CORS for frontend
+  const frontendUrl = (process.env.FRONTEND_URL || '').replace(/\/$/, '');
   app.enableCors({
-    origin:
-      process.env.NODE_ENV === 'production'
-        ? [process.env.FRONTEND_URL || 'https://your-frontend-url.vercel.app']
-        : ['http://localhost:3000', 'http://localhost:5173'],
+    origin: frontendUrl,
     credentials: true,
   });
 
@@ -46,7 +43,7 @@ async function bootstrap() {
   const port = process.env.PORT || 3001;
   await app.listen(port, '0.0.0.0');
   console.log(
-    `Application is running on: ${await app.getUrl()}, CORS enabled for ${process.env.FRONTEND_URL || 'localhost'}`,
+    `Application is running on: ${await app.getUrl()}, CORS enabled for ${frontendUrl}`,
   );
 }
 void bootstrap();
